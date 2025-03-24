@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Category</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+      
+        <h1>Select a Category</h1>
+        <div class="category-images">
+            <div class="category">
+                <img src="dsa.jpg" alt="DSA" />
+            </div>
+            <div class="category">
+                <img src="dbms.jpg" alt="DBMS" />
+            </div>
+            <div class="category">
+                <img src="wd.jpg" alt="Web Development" />
+            </div>
+        </div>
+        <ul id="category-list"></ul>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("categories.php")
+                .then(response => response.json())
+                .then(data => {
+                    const categoryList = document.getElementById("category-list");
+                    categoryList.innerHTML = data.map(cat => 
+                        `<li><a href="quiz.html?category_id=${cat.id}">${cat.name}</a></li>`
+                    ).join('');
+                });
+        });
+    </script>
+</body>
+</html>

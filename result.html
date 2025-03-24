@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Result</h1>
+        <div id="result-container">
+            <h2>Your Score: <span id="score"></span></h2>
+            <button id="view-leaderboard">View Leaderboard</button>
+            <button id="take-another-quiz">Take Another Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let score = new URLSearchParams(window.location.search).get("score");
+            if (score !== null) {
+                document.getElementById("score").innerText = score;
+            } else {
+                document.getElementById("result-container").innerHTML = "<h2>Error fetching score.</h2>";
+            }
+
+            document.getElementById("view-leaderboard").addEventListener("click", () => {
+                window.location.href = "leaderboard.html";
+            });
+
+            document.getElementById("take-another-quiz").addEventListener("click", () => {
+                window.location.href = "categories.html";
+            });
+        });
+    </script>
+</body>
+</html>
